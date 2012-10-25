@@ -34,22 +34,16 @@ public class JruGwtTestUtilRunner implements JruRunner {
     }
 
     public void onAfter(Statement statement, Object testObj) {
-        // TODO Auto-generated method stub
-
     }
 
     public void onAfterMethod(Statement statement, Object testObj) {
-        // TODO Auto-generated method stub
-
     }
 
     public void onBefore(Statement statement, Object testObj) {
-        // TODO Auto-generated method stub
-
+        
     }
 
     public void onBeforeMethod(Statement statement, Object testObj) {
-        // TODO Auto-generated method stub
 
     }
 
@@ -60,7 +54,6 @@ public class JruGwtTestUtilRunner implements JruRunner {
 
     @Override
     public void updateChildren(List<FrameworkMethod> child) {
-        // TODO Auto-generated method stub
 
     }
 

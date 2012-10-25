@@ -1,0 +1,76 @@
+<html xmlns:cp="http://www.agileinsider.org/concordion/plus" xmlns:c="http://www.concordion.org/2007/concordion">
+<head>
+    <link href="../../../concordion.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<h1>Some Examples of Using Concordion Plus</h1>
+
+<div class="example">
+    <h3>Example</h3>
+
+    <div cp:ignore="Work In Progress">
+        This is an ignored
+        <span c:execute="nonExistantMethod()">section</span>
+        which might indicate functionality that is currently being implemented.
+    </div>
+
+    <div class="scenario"  cp:scenario="Very Simple Passing Scenario">
+        This is a very simple scenario, which doesn't actually do anything but illustrates the markup applied.
+    </div>
+
+    <div class="scenario"  cp:scenario="A Scenario With An Error">
+        Of course, some scenarios may fail due to
+        <span c:execute="anotherNonExistingMethod()">Exceptions.</span>
+        And should be marked up accordingly.
+    </div>
+
+    <div class="scenario"  cp:scenario="Another Passing Scenario">
+        But just because one scenario has an exception,
+        should allow other scenarios to be tested and report
+        <span c:assertEquals="getText()">success</span> when they pass.
+    </div>
+
+    <div class="scenario"  cp:scenario="A Scenario Which Fails">
+        And of course, some scenarios may fail with a real
+        <span c:assertEquals="getUnexpectedAssertionMessage()">failure</span>
+        caused by invalid assumptions, indicating a real failure in the implementation.
+    </div>
+
+    <div class="scenario"  cp:ignore="Yet More Work To Do">
+        And of course, ignored sections should not execute any of the fixture code,
+        which in this case would have resulted in a
+        <span c:execute="anotherNonExistantMethod()">exception</span>
+        being thrown.
+    </div>
+
+    <h3>Using lists for scenarios</h3>
+    <ul>
+        <li class="scenario" cp:ignore="A list item to do">To <span c:execute="doSomething()">do</span>..., work in progress</li>
+        <li class="scenario" cp:scenario="A list item which is done">Something we've done ;)</li>
+        <li class="scenario" cp:scenario="Another list item which is done">Something else we've completed</li>
+    </ul>
+
+    <h3>Using matrix table</h3>
+    <table cp:matrix="multiply(#row,#column,#cell)">
+        <thead>
+        <tr>
+            <th>mult</th>
+            <th>1</th>
+            <th>2</th>
+        </tr>
+        </thead>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>2</td>
+            <td>4</td>
+        </tr>
+    </table>
+    </div>
+</body>
+</html>

@@ -9,6 +9,7 @@ import junitparams.internal.ParameterisedTestClassRunner;
 import junitparams.internal.TestMethod;
 import net.tanoshi.test.junit.IsExcuteDelegate;
 import net.tanoshi.test.junit.JruRunner;
+import net.tanoshi.test.junit.StatementProvider;
 
 import org.junit.runner.Description;
 import org.junit.runner.notification.RunNotifier;
@@ -105,7 +106,7 @@ public class JruJUnitParamsRunner implements JruRunner, IsExcuteDelegate {
     public void onRun(RunNotifier notifier) {
     }
 
-    public boolean runTest(Statement statement, FrameworkMethod method, RunNotifier notifier) {
+    public boolean runTest(StatementProvider statementProvider, FrameworkMethod method, RunNotifier notifier) {
         if (handleIgnored(method, notifier)) {
             return false;
         }
@@ -113,7 +114,7 @@ public class JruJUnitParamsRunner implements JruRunner, IsExcuteDelegate {
         TestMethod testMethod = parameterisedRunner.testMethodFor(method);
         if (parameterisedRunner.shouldRun(testMethod)) {
             System.out.println("Running this test.");
-            parameterisedRunner.runParameterisedTest(testMethod, statement, notifier);
+            parameterisedRunner.runParameterisedTest(testMethod, statementProvider.get(method), notifier);
             return true;
         }
 

@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.tanoshi.test.junit.IsExcuteDelegate;
 import net.tanoshi.test.junit.JruRunner;
+import net.tanoshi.test.junit.StatementProvider;
 
 import org.concordion.api.ResultSummary;
 import org.concordion.internal.FixtureRunner;
@@ -49,9 +50,7 @@ public class JruConcordionRunner implements JruRunner, IsExcuteDelegate {
 
     @Override
     public void computeTestMethods(List<FrameworkMethod> testMethods) {
-        // if (testMethods != null && !testMethods.contains(fakeMethod)) {
         testMethods.add(fakeMethod);
-        // }
     }
 
     @Override
@@ -124,7 +123,7 @@ public class JruConcordionRunner implements JruRunner, IsExcuteDelegate {
     }
 
     @Override
-    public boolean runTest(Statement statement, FrameworkMethod method, RunNotifier notifier) {
+    public boolean runTest(StatementProvider statementProvider, FrameworkMethod method, RunNotifier notifier) {
         if (method == fakeMethod) {
         }
         return false;

@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.tanoshi.test.junit.IsExcuteDelegate;
 import net.tanoshi.test.junit.JruRunner;
+import net.tanoshi.test.junit.StatementProvider;
 import net.tanoshi.test.junit.annotation.JruRunWith;
 
 import org.junit.Ignore;
@@ -18,7 +19,7 @@ import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.Statement;
 
-public class JruRunnerImpl extends BlockJUnit4ClassRunner {
+public class JruRunnerImpl extends BlockJUnit4ClassRunner implements StatementProvider {
 
     private List<JruRunner> runners = new ArrayList<JruRunner>();
     private Description cachedDescription;
@@ -148,7 +149,7 @@ public class JruRunnerImpl extends BlockJUnit4ClassRunner {
         } else {
             for (JruRunner runner : runners) {
                 if (runner instanceof IsExcuteDelegate) {
-                    if (((IsExcuteDelegate) runner).runTest(methodBlock(method), method, notifier)) {
+                    if (((IsExcuteDelegate) runner).runTest(this, method, notifier)) {
                         return;
                     }
                 }
@@ -184,6 +185,11 @@ public class JruRunnerImpl extends BlockJUnit4ClassRunner {
          * over this function and add statement h andler.
          */
         return super.withBefores(method, target, new JruRunBefore(statement, runners, target));
+    }
+
+    @Override
+    public Statement get(FrameworkMethod method) {
+        return methodBlock(method);
     }
 
 }

@@ -6,7 +6,7 @@ import org.junit.runners.model.Statement;
 
 
 public interface IsExcuteDelegate {
-    public boolean runTest(Statement statement, FrameworkMethod method, RunNotifier notifier);
+    public boolean runTest(StatementProvider statementProvider, FrameworkMethod method, RunNotifier notifier);
     
     Statement methodInvoker(FrameworkMethod method, Object test);
 
